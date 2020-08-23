@@ -15,14 +15,37 @@
 
 
 
-    <TextView
-        android:id="@+id/labelDate"
-        android:layout_width="wrap_content"
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginTop="24dp"
-        android:text="From:"
-        android:textColor="?android:attr/colorForeground"
-        android:textSize="18sp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/labelStartDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="From: "
+            android:textColor="?android:attr/colorForeground"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/eventStartDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2" />
+
+        <Button
+            android:id="@+id/eventStartTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,18 +54,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/eventStartDate"
+        <TextView
+            android:id="@+id/labelEndDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="date"
+            android:text="To:      "
+            android:textColor="?android:attr/colorForeground"
+            android:textSize="18sp" />
+
+
+        <Button
+            android:id="@+id/eventEndDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="2" />
 
-        <EditText
-            android:id="@+id/eventStartTime"
+        <Button
+            android:id="@+id/eventEndTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="time"
             android:layout_weight="1" />
     </LinearLayout>
 
@@ -50,14 +80,11 @@
         android:id="@+id/eventLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:inputType="textPersonName"
         android:hint="Location"/>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button" />
+
 
 
 </LinearLayout>
