@@ -78,26 +78,19 @@ public class CreateFragment extends Fragment {
         // Use DateFormat class to ... well format the current date
         DateFormat formatDate = DateFormat.getDateInstance(DateFormat.LONG);
         DateFormat formatTime = DateFormat.getTimeInstance(DateFormat.SHORT);
-
-        // Get the current time and round to the next hour
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.MINUTE, 0);
-        cal.add(Calendar.HOUR, 1);
-        Date firstDefaultTime = cal.getTime();
-        cal.add(Calendar.HOUR, 1);
-        Date secondDefaultTime = cal.getTime();
+        MainActivity mainActivity = (MainActivity) getActivity();
 
         // Alter the event buttons accordingly (start time/date)
         Button startDate = view.findViewById(R.id.eventStartDate);
         Button startTime = view.findViewById(R.id.eventStartTime);
-        startDate.setText(formatDate.format(firstDefaultTime));
-        startTime.setText(formatTime.format(firstDefaultTime));
+        startDate.setText(formatDate.format(mainActivity.startDate.getTime()));
+        startTime.setText(formatTime.format(mainActivity.startDate.getTime()));
 
         // Alter the event buttons accordingly (end time/date)
         Button endDate = view.findViewById(R.id.eventEndDate);
         Button endTime = view.findViewById(R.id.eventEndTime);
-        endDate.setText(formatDate.format(secondDefaultTime));
-        endTime.setText(formatTime.format(secondDefaultTime));
+        endDate.setText(formatDate.format(mainActivity.endDate.getTime()));
+        endTime.setText(formatTime.format(mainActivity.endDate.getTime()));
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -108,15 +101,30 @@ public class CreateFragment extends Fragment {
         view.findViewById(R.id.eventStartDate).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getActivity()).startDatePickerDialog(view);
+                ((MainActivity)getActivity()).createDatePickerDialog(view, true);
             }
         });
 
         view.findViewById(R.id.eventEndDate).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getActivity()).endDatePickerDialog(view);
+                ((MainActivity)getActivity()).createDatePickerDialog(view, false);
             }
         });
+
+        view.findViewById(R.id.eventStartTime).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)getActivity()).createTimePickerDialog(view, true);
+            }
+        });
+
+        view.findViewById(R.id.eventEndTime).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)getActivity()).createTimePickerDialog(view, false);
+            }
+        });
+
     }
 }
