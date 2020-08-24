@@ -10,12 +10,8 @@
         android:id="@+id/eventName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="textCapSentences"
         android:hint="Event name"/>
-
-
-
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -81,10 +77,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:inputType="textPersonName"
+        android:inputType="textCapSentences"
         android:hint="Location"/>
 
+    <EditText
+        android:id="@+id/eventDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:inputType="textMultiLine|textCapSentences"
+        android:hint="Description" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/generate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:layout_gravity="bottom"
+            android:text="Generate" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:layout_gravity="bottom"
+            android:text="Cancel" />
+
+    </LinearLayout>
 
 
 </LinearLayout>
