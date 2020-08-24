@@ -52,8 +52,9 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
         }
 
         DateFormat formatDate = DateFormat.getTimeInstance(DateFormat.SHORT);
-        cal.set(Calendar.HOUR_OF_DAY, hour);
+        cal.set(Calendar.HOUR_OF_DAY, hour);                // store time data in MainActivity
         cal.set(Calendar.MINUTE, minute);
-        button.setText(formatDate.format(cal.getTime()));
+        button.setText(formatDate.format(cal.getTime()));   // adjust UI button
+        mainActivity.checkEndDate();                        // adjust endDate if necessary
     }
 }

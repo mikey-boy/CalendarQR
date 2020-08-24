@@ -56,6 +56,6 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
         DateFormat formatDate = DateFormat.getDateInstance(DateFormat.LONG);
         cal.set(year, monthOfYear, dayOfMonth);                 // store date in MainActivity
         button.setText(formatDate.format(cal.getTime()));       // change UI buttons to reflect updated date
-        mainActivity.createTimePickerDialog(view, startDate);   // pull up a TimePicker for the user
+        mainActivity.checkEndDate();                            // adjust endDate if necessary
     }
 }

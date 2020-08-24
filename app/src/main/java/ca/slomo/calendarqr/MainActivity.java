@@ -9,7 +9,6 @@ import android.widget.Button;
 
 import java.text.DateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import ca.slomo.calendarqr.ui.main.DatePickerFragment;
 import ca.slomo.calendarqr.ui.main.TimePickerFragment;
@@ -27,6 +26,25 @@ public class MainActivity extends AppCompatActivity {
 
         endDate = (Calendar) startDate.clone();
         endDate.add(Calendar.HOUR, 1);
+    }
+
+    // Check whether the endDate comes prior to startDate
+    public void checkEndDate() {
+        if (startDate.compareTo(endDate) > 0) {
+            // Move end time to 1 hour past
+            endDate = (Calendar) startDate.clone();
+            endDate.add(Calendar.HOUR, 1);
+
+            // Use DateFormat class to ... well format the current date
+            DateFormat formatDate = DateFormat.getDateInstance(DateFormat.LONG);
+            DateFormat formatTime = DateFormat.getTimeInstance(DateFormat.SHORT);
+
+            // Alter the event buttons accordingly (end time/date)
+            Button endDateButton = this.findViewById(R.id.eventEndDate);
+            Button endTimeButton = this.findViewById(R.id.eventEndTime);
+            endDateButton.setText(formatDate.format(this.endDate.getTime()));
+            endTimeButton.setText(formatTime.format(this.endDate.getTime()));
+        }
     }
 
     @Override
