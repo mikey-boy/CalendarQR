@@ -19,7 +19,20 @@
         android:id="@+id/createFragment"
         android:name="ca.slomo.calendarqr.ui.main.CreateFragment"
         android:label="CreateFragment"
-        tools:layout="@layout/create_fragment"/>
+        tools:layout="@layout/create_fragment">
+        <action
+            android:id="@+id/action_createFragment_to_createdQrFragment"
+            app:destination="@id/createdQrFragment" />
+        <action
+            android:id="@+id/action_createFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 
+    <fragment
+        android:id="@+id/createdQrFragment"
+        android:name="ca.slomo.calendarqr.ui.main.CreatedQrFragment"
+        android:label="CreatedQrFragment"
+        tools:layout="@layout/created_qr_fragment" >
+    </fragment>
 
 </navigation>

@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,6 +78,22 @@ public class CreateFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ((MainActivity)getActivity()).createTimePickerDialog(view, false);
+            }
+        });
+
+        // Set listener for generate and cancel buttons
+        view.findViewById(R.id.generateButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(CreateFragment.this)
+                        .navigate(R.id.action_createFragment_to_createdQrFragment);
+            }
+        });
+        view.findViewById(R.id.cancelButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(CreateFragment.this)
+                        .navigate(R.id.action_createFragment_to_mainFragment);
             }
         });
     }
