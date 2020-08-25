@@ -1,8 +1,8 @@
 package ca.slomo.calendarqr;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
-import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,44 +15,32 @@ import ca.slomo.calendarqr.ui.main.TimePickerFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    public Calendar startDate;
-    public Calendar endDate;
-
-    private void setDefaultDateTime() {
-        // Get the current time and round to the next hour
-        startDate = Calendar.getInstance();
-        startDate.set(Calendar.MINUTE, 0);
-        startDate.add(Calendar.HOUR, 1);
-
-        endDate = (Calendar) startDate.clone();
-        endDate.add(Calendar.HOUR, 1);
-    }
-
-    // Check whether the endDate comes prior to startDate
-    public void checkEndDate() {
-        if (startDate.compareTo(endDate) > 0) {
-            // Move end time to 1 hour past
-            endDate = (Calendar) startDate.clone();
-            endDate.add(Calendar.HOUR, 1);
-
-            // Use DateFormat class to ... well format the current date
-            DateFormat formatDate = DateFormat.getDateInstance(DateFormat.LONG);
-            DateFormat formatTime = DateFormat.getTimeInstance(DateFormat.SHORT);
-
-            // Alter the event buttons accordingly (end time/date)
-            Button endDateButton = this.findViewById(R.id.eventEndDate);
-            Button endTimeButton = this.findViewById(R.id.eventEndTime);
-            endDateButton.setText(formatDate.format(this.endDate.getTime()));
-            endTimeButton.setText(formatTime.format(this.endDate.getTime()));
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+    }
 
-        setDefaultDateTime();
+    // Check whether the endDate comes prior to startDate
+    public void updateDateTimeUI() {
+        // Use DateFormat class to ... well format the current date
+        DateFormat formatDate = DateFormat.getDateInstance(DateFormat.LONG);
+        DateFormat formatTime = DateFormat.getTimeInstance(DateFormat.SHORT);
+        final EventViewModel eventViewModel = new ViewModelProvider(this).get(EventViewModel.class);
+        Calendar startDate = eventViewModel.getStartDate();
+        Calendar endDate = eventViewModel.getEndDate();
+
+        // Alter the event buttons accordingly (start time/date)
+        Button startDateButton = this.findViewById(R.id.eventStartDate);
+        Button startTimeButton = this.findViewById(R.id.eventStartTime);
+        startDateButton.setText(formatDate.format(startDate.getTime()));
+        startTimeButton.setText(formatTime.format(startDate.getTime()));
+
+        // Alter the event buttons accordingly (end time/date)
+        Button endDateButton = this.findViewById(R.id.eventEndDate);
+        Button endTimeButton = this.findViewById(R.id.eventEndTime);
+        endDateButton.setText(formatDate.format(endDate.getTime()));
+        endTimeButton.setText(formatTime.format(endDate.getTime()));
     }
 
     public void createDatePickerDialog(View v, boolean startDate) {

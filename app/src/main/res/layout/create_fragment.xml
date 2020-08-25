@@ -95,15 +95,6 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/generateButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="10dp"
-            android:layout_gravity="bottom"
-            android:text="Generate" />
-
-        <Button
             android:id="@+id/cancelButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -111,6 +102,15 @@
             android:layout_margin="10dp"
             android:layout_gravity="bottom"
             android:text="Cancel" />
+
+        <Button
+            android:id="@+id/generateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:layout_gravity="bottom"
+            android:text="Generate" />
 
     </LinearLayout>
 

@@ -8,10 +8,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import java.text.DateFormat;
 
-import ca.slomo.calendarqr.MainActivity;
+import ca.slomo.calendarqr.EventViewModel;
 import ca.slomo.calendarqr.R;
 
 public class CreatedQrFragment extends Fragment {
@@ -29,14 +30,16 @@ public class CreatedQrFragment extends Fragment {
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        MainActivity mainActivity = (MainActivity) getActivity();
         DateFormat formatDateTime = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.SHORT);
+        EventViewModel eventViewModel = new ViewModelProvider(requireActivity()).get(EventViewModel.class);
 
         TextView startDate = view.findViewById(R.id.createdStartDate);
         TextView endDate   = view.findViewById(R.id.createdEndDate);
+        String formattedStart = formatDateTime.format(eventViewModel.getStartDate().getTime());
+        String formattedEnd = formatDateTime.format(eventViewModel.getEndDate().getTime());
 
-        startDate.append(formatDateTime.format(mainActivity.startDate.getTime()));
-        endDate.append(formatDateTime.format(mainActivity.endDate.getTime()));
+        startDate.append(formattedStart);
+        endDate.append(formattedEnd);
     }
 
 }
