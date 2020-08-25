@@ -5,13 +5,20 @@ import android.util.Log;
 import androidx.lifecycle.ViewModel;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 public class EventViewModel extends ViewModel {
     private Calendar startDate, endDate;
-    private String description, location;
+    private String name, location, description;
 
     public final int START_DATE = 0;
     public final int END_DATE = 1;
+
+    public String getName() { return name; }
+    public String getLocation() { return location; }
+    public String getDescription() { return description; }
+    public Calendar getStartDate() { return startDate; }
+    public Calendar getEndDate() { return endDate; }
 
     private void setDefaultDateTime() {
         // Get the current time and round to the next hour
@@ -25,7 +32,6 @@ public class EventViewModel extends ViewModel {
 
     public EventViewModel(){
         setDefaultDateTime();
-        Log.e("EventViewModal", "New EventViewModal Created!");
     }
 
     // Check whether the endDate comes prior to startDate
@@ -35,9 +41,6 @@ public class EventViewModel extends ViewModel {
         endDate.add(Calendar.HOUR, 1);
         return true;
     }
-
-    public Calendar getStartDate() { return startDate; }
-    public Calendar getEndDate() { return endDate; }
 
     public void dateSet(int year, int monthOfYear, int dayOfMonth, int targetDate) {
         Calendar date;
@@ -52,5 +55,11 @@ public class EventViewModel extends ViewModel {
         else { date = endDate; }
         date.set(Calendar.HOUR_OF_DAY, hour);
         date.set(Calendar.MINUTE, minute);
+    }
+
+    public void storeTextData(String name, String location, String description) {
+        this.name = name;
+        this.location = location;
+        this.description = description;
     }
 }

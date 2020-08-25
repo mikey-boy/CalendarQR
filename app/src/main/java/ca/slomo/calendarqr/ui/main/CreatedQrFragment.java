@@ -33,8 +33,16 @@ public class CreatedQrFragment extends Fragment {
         DateFormat formatDateTime = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.SHORT);
         EventViewModel eventViewModel = new ViewModelProvider(requireActivity()).get(EventViewModel.class);
 
+        TextView name = view.findViewById(R.id.createdEventName);
+        TextView location = view.findViewById(R.id.createdLocation);
+        TextView description = view.findViewById(R.id.createdDescription);
         TextView startDate = view.findViewById(R.id.createdStartDate);
-        TextView endDate   = view.findViewById(R.id.createdEndDate);
+        TextView endDate = view.findViewById(R.id.createdEndDate);
+
+        name.append(eventViewModel.getName());
+        location.append(eventViewModel.getLocation());
+        description.append(eventViewModel.getDescription());
+
         String formattedStart = formatDateTime.format(eventViewModel.getStartDate().getTime());
         String formattedEnd = formatDateTime.format(eventViewModel.getEndDate().getTime());
 

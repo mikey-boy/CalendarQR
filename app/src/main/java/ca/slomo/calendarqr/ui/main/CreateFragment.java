@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -31,6 +32,18 @@ public class CreateFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.create_fragment, container, false);
+    }
+
+    private void storeTextFields() {
+        MainActivity mainActivity = (MainActivity) getActivity();
+        EventViewModel eventViewModel = new ViewModelProvider(requireActivity()).get(EventViewModel.class);
+
+        EditText name = (EditText) mainActivity.findViewById(R.id.eventName);
+        EditText location = (EditText) mainActivity.findViewById(R.id.eventLocation);
+        EditText description = (EditText) mainActivity.findViewById(R.id.eventDescription);
+
+        eventViewModel.storeTextData(name.getText().toString(), location.getText().toString(),
+                description.getText().toString());
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -70,6 +83,7 @@ public class CreateFragment extends Fragment {
         view.findViewById(R.id.generateButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                storeTextFields();
                 NavHostFragment.findNavController(CreateFragment.this)
                         .navigate(R.id.action_createFragment_to_createdQrFragment);
             }
